@@ -38,7 +38,6 @@ public class TestCrawler {
 	private IDailyTradeInfoService dailyTradeInfoService = (IDailyTradeInfoService) ServiceProvider
 		    .getService(IDailyTradeInfoService.SERVICE_NAME);
 
-	@Test
 	public void addCorpFinancialInfo() throws Exception {
 		Map<String,String> psNameMap = stockBasicService.getPSMapInStock();
 		//Iterator<HashMap> it = psNameMap.entrySet().iterator();
