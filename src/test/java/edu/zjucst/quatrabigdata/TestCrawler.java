@@ -1,4 +1,4 @@
-package quatrabigdata;
+package edu.zjucst.quatrabigdata;
 
 import java.util.List;
 import java.util.Map;
