@@ -21,6 +21,11 @@ import edu.zjucst.quatrabigdata.service.IRealTimePrcService;
 import edu.zjucst.quatrabigdata.service.IStockBasicService;
 import edu.zjucst.quatrabigdata.utils.URLUtils;
 
+/**
+ * @author zhangsurui
+ *
+ * 2015年12月21日
+ */
 public class TestCrawler {
 
 	private IStockBasicService stockBasicService = (IStockBasicService) ServiceProvider
@@ -38,6 +43,11 @@ public class TestCrawler {
 	private IDailyTradeInfoService dailyTradeInfoService = (IDailyTradeInfoService) ServiceProvider
 		    .getService(IDailyTradeInfoService.SERVICE_NAME);
 
+
+	/**
+	 * insert CorpFinancialInfo table
+	 * @throws Exception
+	 */
 	public void addCorpFinancialInfo() throws Exception {
 		Map<String,String> psNameMap = stockBasicService.getPSMapInStock();
 		//Iterator<HashMap> it = psNameMap.entrySet().iterator();
@@ -52,6 +62,11 @@ public class TestCrawler {
 		}
 	}
 	
+
+	/**
+	 * insert BasicInfo table
+	 * @throws Exception
+	 */
 	public void addBasicInfo() throws Exception {
 		Map<String,Integer> psStateMap = stockBasicService.getPSStateMap();
 		// System.out.println(place_symbolList.get(1));
@@ -64,12 +79,19 @@ public class TestCrawler {
 		}
 	}
 	
+	/**
+	 * insert StockBasic table
+	 */
 	public void addAllStock() {
 		List<StockBasic> sBList = crawlerService.genSBList();
 		stockBasicService.addList(sBList);
 	}
 
-	// 停牌判定标准
+	/**
+	 * @param content
+	 * 停牌判定标准
+	 * @return
+	 */
 	public boolean chargeStop(String content) {
 		String[] strArray = content.split("~");
 		// 如果买一价、买一量，买五价、买五量，卖一价、卖一量，卖五价、卖五量都为0，则说明停牌
@@ -102,6 +124,10 @@ public class TestCrawler {
 		}
 	}
 
+	/**
+	 * insert CapitalFlowInfo table
+	 * @throws Exception
+	 */
 	public void addCapitalFlowInfo() throws Exception {
 		List<String> place_symbolList = stockBasicService.getPSInStock(); // 只取在市的股票
 		for (String ps : place_symbolList) {
@@ -111,6 +137,9 @@ public class TestCrawler {
 	}
 	
 
+    /**
+     * insert DailyTradeInfo table
+     */
     public void addDailyTradeInfo() {
 	List<String> place_symbolList = stockBasicService
 		.getPSInStock();
@@ -120,6 +149,11 @@ public class TestCrawler {
 	}
     }
 
+    
+	/**
+	 * insert RealTimePrc table
+	 * @throws Exception
+	 */
 	public void addRealTimePrc() throws Exception {
 		List<String> place_symbols = stockBasicService.getPSInStock(); // 实时数据只选取在市的股票
 		for (String ps : place_symbols) {

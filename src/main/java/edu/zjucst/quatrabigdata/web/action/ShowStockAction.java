@@ -13,7 +13,7 @@ import edu.zjucst.quatrabigdata.service.ICrawlerService;
 import edu.zjucst.quatrabigdata.service.IStockBasicService;
 
 @SuppressWarnings("serial")
-//@Namespace("/stock")
+// @Namespace("/stock")
 @Results({ @Result(name = "show", location = "/showStock.jsp", type = "dispatcher") })
 public class ShowStockAction extends BaseAction { // 只显示basicInfo表，在市的股票，沪A
 
@@ -25,8 +25,8 @@ public class ShowStockAction extends BaseAction { // 只显示basicInfo表，在
 	public String showStock() {
 		stocks = stockBasicService.getHuASBList();
 		System.out.println("before return in showStockAction............");
-		for(StockBasic s:stocks)
-			System.out.println(s.getSymbol()+"  "+s.getName());
+		for (StockBasic s : stocks)
+			System.out.println(s.getSymbol() + "  " + s.getName());
 		return "show";
 	}
 
